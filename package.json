@@ -1,0 +1,44 @@
+{
+  "_nodeVersion": "5.1.0",
+  "name": "union-type-option",
+  "version": "0.4.0",
+  "description": "Option / Maybe implementation for union-type",
+  "main": "option.js",
+  "scripts": {
+    "test": "tape test/**/*.js | faucet"
+  },
+  "author": "Jethro Larson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jethrolarson/union-type-option/issues"
+  },
+  "maintainers": [
+    {
+      "name": "jethrolarson",
+      "email": "jethrolarson@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jethrolarson/union-type-option.git"
+  },
+  "homepage": "https://github.com/jethrolarson/union-type-option#readme",
+  "keywords": [
+    "adt",
+    "type",
+    "union",
+    "maybe",
+    "option"
+  ],
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "union-type": "^0.2.x",
+    "ramda": "^0.19.x"
+  },
+  "devDependencies": {
+    "tape": "^4.4.x",
+    "tape-catch": "^1.0.x",
+    "faucet": "0.0.1"
+  },
+  "engine": "node >= 4.0.0"
+}
