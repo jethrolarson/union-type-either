@@ -1,16 +1,16 @@
 {
   "_nodeVersion": "5.1.0",
   "name": "union-type-option",
-  "version": "0.4.0",
-  "description": "Option / Maybe implementation for union-type",
-  "main": "option.js",
+  "version": "0.1.0",
+  "description": "Either implementation for union-type",
+  "main": "either.js",
   "scripts": {
     "test": "tape test/**/*.js | faucet"
   },
   "author": "Jethro Larson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jethrolarson/union-type-option/issues"
+    "url": "https://github.com/jethrolarson/union-type-either/issues"
   },
   "maintainers": [
     {
@@ -20,15 +20,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jethrolarson/union-type-option.git"
+    "url": "git+https://github.com/jethrolarson/union-type-either.git"
   },
-  "homepage": "https://github.com/jethrolarson/union-type-option#readme",
+  "homepage": "https://github.com/jethrolarson/union-type-either#readme",
   "keywords": [
     "adt",
     "type",
     "union",
-    "maybe",
-    "option"
+    "either"
   ],
   "readmeFilename": "README.md",
   "dependencies": {
