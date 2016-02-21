@@ -1,7 +1,7 @@
 union-type-either
 =================
 
-Either implementation for [union-type](https://github.com/paldepind/union-type). See also [union-type-option](https://github.com/jethrolarson/union-type-option)
+Either implementation for [union-type](https://github.com/paldepind/union-type). See also [union-type-option](https://github.com/jethrolarson/union-type-option).
 
 
 ### Implemented interfaces:
@@ -30,13 +30,13 @@ var Right = Either.Right
 var Left = Either.Left
 ```
 
-#### Right()
+#### Right :: a -> Either a
 Create an instance of `Either` with a valid value.
 ```js
 Right(1) // Right(1)
 ```
 
-#### Left()
+#### Left :: a -> Either a
 Create an instance of `Either` with a default value.
 ```js
 Left('Danger Will Robinson')
@@ -86,14 +86,14 @@ Run a function inside an `Either` on the value in another `Either`
 Either.ap(Right(2), Right(a => a * 2)) // Right(4)
 ```
 
-#### reduce()
+#### reduce :: (b -> a -> b) -> b -> Either a -> b
 Turn an option into something else by combining its value with a seed and a reducing function.
 
 ```js
 Either.reduce((a, b) => a + b, 1, Right(2)) // Right(3)
 ```
 
-#### extend :: (Either a -> b) -> Either a -> b
+#### extend :: Either a => (a -> b) -> a -> Either b
 Run a function on an `Either` and wrap with another `Either`.
 
 ```js
