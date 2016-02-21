@@ -1,7 +1,7 @@
 union-type-either
 =================
 
-Either implementation for [union-type](https://github.com/paldepind/union-type)
+Either implementation for [union-type](https://github.com/paldepind/union-type). See also [union-type-option](https://github.com/jethrolarson/union-type-option)
 
 
 ### Implemented interfaces:
