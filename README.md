@@ -31,21 +31,15 @@ var Left = Either.Left
 ```
 
 #### Right()
-Create an instance of `Either` with a non-null value.
+Create an instance of `Either` with a valid value.
 ```js
 Right(1) // Right(1)
 ```
 
 #### Left()
-Create an instance of `Either` with a null value.
+Create an instance of `Either` with a default value.
 ```js
-Left() // Left()
-```
-
-#### none
-Alias to get the instance of Left()
-```js
-Either.none // Left()
+Left('Danger Will Robinson')
 ```
 
 #### equals :: Either a -> Either b -> Boolean
@@ -54,7 +48,7 @@ Compare the contained value of one `Either` against another using `===`.
 ```js
 Either.equals(Right(1), Right(1)) //true
 Either.equals(Right({}), Right({})) //false
-Either.equals(Left(), Left()) //true
+Either.equals(Left('Doh'), Left('Doh')) //true
 ```
 
 #### map :: (a -> b) -> Either a -> Either b
@@ -64,24 +58,24 @@ Either.map(a => a + 3, Right(1)) // Right(4)
 ```
 
 #### extract :: Either a -> a
-Get the value out of an `Either`. May be null!
+Get the value out of an `Either`. Could be `Left` or `Right`.
 ```js
 Either.extract(Right(1)) // 1
-Either.extract(Left()) // null
+Either.extract(Left('Doh')) // 'Doh'
 ```
 
 #### of :: a -> Either b -> a
 Put a value in an `Either`. Mostly useful for higher level operations.
 ```js
-Either.of(1, Left()) // Right(1)
+Either.of(1, Left('Doh')) // Right(1)
 Either.of(1, Right(999)) // Right(1)
 ```
 
 #### chain :: (a -> Either b) -> Either a -> Either b
 Run a function that returns an `Either` on the value in another `Either`.
 ```js
-var validLength = str => str.length < 8 ? Left() : Right(str)
-var validHasCapitals = str => (/[A-Z]/).test(str) ? Right(str) : Left()
+var validLength = str => str.length < 8 ? Left('Passwords must contain at least 8 characters') : Right(str)
+var validHasCapitals = str => (/[A-Z]/).test(str) ? Right(str) : Left('Password must contain at least one capital')
 var validateUsername = username => Either.chain(validHasCapitals, validLength(username))
 ```
 
