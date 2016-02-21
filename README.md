@@ -25,7 +25,7 @@ This library is written in node-supported es2015 (4.0+) so if you're running in
 an old environment you may need to transpile to es5.
 
 ```js
-var Either = require('union-type-option')
+var Either = require('union-type-either')
 var Right = Either.Right
 var Left = Either.Left
 ```
@@ -100,7 +100,7 @@ Either.reduce((a, b) => a + b, 1, Right(2)) // Right(3)
 ```
 
 #### extend :: (Either a -> b) -> Either a -> b
-Run a function on a `Either`. Opposite of `Either.chain`.
+Run a function on an `Either` and wrap with another `Either`.
 
 ```js
 Either.extend(a => a.extract() + 1, Right(1)) // 2

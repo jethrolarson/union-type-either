@@ -39,8 +39,8 @@ Either.chain = curry((f, a) => Either.case({
 
 //:: Either a -> Either (a -> b) -> Either b
 Either.ap = curry((a, b) => Either.case({
-    Right: v => b.name === "Right" ? Right(Either.extract(b)(v)) : none
-  , Left: I
+    Right: v => b.name === "Right" ? Right(Either.extract(b)(v)) : b
+  , Left: _ => a
 }, a))
 
 //:: (b -> a -> b) -> b -> Either a -> b
@@ -51,7 +51,7 @@ Either.reduce = curry((f, b, a) => Either.case({
 
 //:: (Either a -> b) -> Either a -> b
 Either.extend = curry((f, a) => Either.case({
-    Right: _ => f(a)
+    Right: _ => Right(f(a))
   , Left: _ => a
 }, a))
 
