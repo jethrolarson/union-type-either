@@ -37,6 +37,18 @@ Either.chain = curry((f, a) => Either.case({
   , Left: _ => a
 }, a))
 
+//:: (a -> Either b) -> Either a -> Either b
+Either.chainLeft = curry((f, a) => Either.case({
+    Right: _ => a
+  , Left: v => f(v)
+}, a))
+
+//:: (a -> Either b) -> (b -> Either c) -> Either a b -> Either c
+Either.bichain = curry((f, g, a) => Either.case({
+    Right: v => g(v)
+  , Left: v => f(v)
+}, a))
+
 //:: Either a -> Either (a -> b) -> Either b
 Either.ap = curry((a, b) => Either.case({
     Right: v => b.name === "Right" ? Right(Either.extract(b)(v)) : b
@@ -53,6 +65,18 @@ Either.reduce = curry((f, b, a) => Either.case({
 Either.extend = curry((f, a) => Either.case({
     Right: _ => Right(f(a))
   , Left: _ => a
+}, a))
+
+//:: (a -> c) -> (b -> c) -> Either a b ->  c
+Either.cata = curry((f, g, a) => Either.case({
+    Right: g
+  , Left: f
+}, a))
+
+//:: (a -> b) -> (c -> d) -> Either a c -> Either b d
+Either.bimap = curry((f, g, a) => Either.case({
+    Right: v => Right(g(v))
+  , Left: v => Left(f(v))
 }, a))
 
 module.exports = Either

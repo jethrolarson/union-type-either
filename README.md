@@ -79,6 +79,12 @@ var validHasCapitals = str => (/[A-Z]/).test(str) ? Right(str) : Left('Password 
 var validateUsername = username => Either.chain(validHasCapitals, validLength(username))
 ```
 
+#### chainLeft :: (a -> Either b) -> Either a -> Either b
+Like chain but only applies to `Left` values.
+
+#### bichain :: (a -> Either b) -> (b -> Either c) -> Either a b -> Either c
+Like chain but takes two functions and applies one of them to Left or Right.
+
 #### ap :: Either a -> Either (a -> b) -> Either b
 Run a function inside an `Either` on the value in another `Either`
 
@@ -87,7 +93,7 @@ Either.ap(Right(2), Right(a => a * 2)) // Right(4)
 ```
 
 #### reduce :: (b -> a -> b) -> b -> Either a -> b
-Turn an option into something else by combining its value with a seed and a reducing function.
+Turn an option into something else by combining its right value with a seed and a reducing function.
 
 ```js
 Either.reduce((a, b) => a + b, 1, Right(2)) // Right(3)
@@ -98,4 +104,20 @@ Run a function on an `Either` and wrap with another `Either`.
 
 ```js
 Either.extend(a => a.extract() + 1, Right(1)) // 2
+```
+
+#### cata :: (a -> c) -> (b -> c) -> Either a b ->  c
+Catamorphism. Run a function on the value of both branches of an `Either`
+
+```js
+Either.cata(a => a + 1, Right(1)) // 2
+Either.cata(a => a + 1, Left(1)) // 2
+```
+
+#### bimap :: (a -> b) -> (c -> d) -> Either a c -> Either b d
+Run a function on the value of both branches of an `Either` and return an `Either`
+
+```js
+Either.bimap(a => a + 1, Right(1)) // Right(2)
+Either.bimap(a => a + 1, Left(1)) // Left(2)
 ```

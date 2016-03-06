@@ -128,3 +128,15 @@ test('is Extend', (t) => {
 
   t.end()
 })
+
+test('Catamorphism', (t) => {
+    t.equal(Either.cata(a => a + 1, Right(1)), 2)
+    t.equal(Either.cata(a => a + 1, Left(1)), 2)
+    t.end()
+})
+
+test('is a Bifunctor', (t) => {
+    eq(Either.bimap(a => a + 1, Right(1)), Right(2))
+    eq(Either.bimap(a => a + 1, Left(1)), Left(2))
+    t.end()
+})
